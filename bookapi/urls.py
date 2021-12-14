@@ -11,13 +11,15 @@ Class-based views
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    2. Add a URL to urlpatterns:  path('bookapi/', include('bookapi.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls.conf import include, include
+from django.urls import path, include
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include("apis.urls"))
+    path('api/v2/books/', include('api.urls')),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name = 'token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name = 'token_refresh'),
 ]

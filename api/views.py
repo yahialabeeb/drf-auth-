@@ -1,5 +1,5 @@
 from django.db import models
-from rest_framework import generics, serializers
+from rest_framework import generics
 from .serializers import BooksSerializer 
 from .models import Book
 
